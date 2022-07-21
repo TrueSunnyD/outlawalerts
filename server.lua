@@ -1,7 +1,20 @@
 -- Framework Stuff ---------------------------------------------------------------
 local QBCore = exports['qb-core']:GetCoreObject()
-QBCore.Functions.CreateCallback('linden_outlawalert:isVehicleOwned', function(source, cb, plate)
+--[[QBCore.Functions.CreateCallback('linden_outlawalert:isVehicleOwned', function(source, cb, plate)
 	exports.ghmattimysql:execute('SELECT plate FROM player_vehicles WHERE plate = @plate', {
+		['@plate'] = plate
+	}, function(result)
+		if result[1] then
+			cb(true)
+		else
+			cb(false)
+		end
+	end)
+end)]]
+--ORIGINAL IS ABOVE
+--UPDATED SQL ENTRY BELOW
+QBCore.Functions.CreateCallback('linden_outlawalert:isVehicleOwned', function(source, cb, plate)
+	MySQL.query.await('SELECT plate FROM player_vehicles WHERE plate = @plate', {
 		['@plate'] = plate
 	}, function(result)
 		if result[1] then
