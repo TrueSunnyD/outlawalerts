@@ -24,6 +24,8 @@ AddEventHandler("mdt:newCall", function(details, caller, coords, sendNotificatio
   call_index = call_index + 1
   local source = src
   local xPlayers = QBCore.Functions.GetPlayers(src)
+  --or this if the one above doesn't work
+  -- local xPlayers = QBCore.Functions.GetQBPlayers()
   for i= 1, #xPlayers do
   	--local source = xPlayers[i]
 	local xPlayer = QBCore.Functions.GetPlayer(src)
